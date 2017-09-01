@@ -1,0 +1,76 @@
+
+@font-face {font-family: "icon";
+  src: url('myfont/iconfont.eot?t=1503386886972'); /* IE9*/
+  src: url('myfont/iconfont.eot?t=1503386886972#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('myfont/iconfont.woff?t=1503386886972') format('woff'), /* chrome, firefox */
+  url('myfont/iconfont.ttf?t=1503386886972') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('myfont/iconfont.svg?t=1503386886972#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.icon {
+  font-family:"icon" !important;
+  font-size:16px;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+.icon-eye:before { content: "\e625"; }
+
+.icon-eye_close:before { content: "\e618"; }
+
+.icon-wechat:before { content: "\e642";font-size: 50px;color:#6db73e;}
+
+.icon-list:before { content: "\e635";font-size: 20px; }
+
+.icon-list1:before { content: "\e719"; }
+
+.icon-refreshfeed:before { content: "\e667"; }
+
+.icon-quit:before { content: "\e61d"; }
+
+.icon-list2:before { content: "\e603";font-size: 17px; }
+
+.icon-info:before { content: "\e60c"; }
+
+.icon:before {
+    line-height: 1;
+}
+/* 右上角 */
+.icon-badge-rb{
+  position: relative;
+}
+.icon-badge-rb:before {
+    display: inline-block;
+    content: "";
+    width: 8px;
+    height: 8px;
+    position: absolute;
+    top: 0;
+    left: -16px;
+    border-radius: 50%;
+    background: red;
+}
+.tab-red-point:after,.red-point:after{
+   position: absolute;
+  content: ' ';
+  height: 6px;
+  width: 6px;
+  border-radius: 3px;
+  background-color: red;
+}
+.tab-red-point:after{
+  top: 7px;
+  right: 24%;
+}
+.red-point:after{
+  top: 10px;
+  right: 35%;
+}
+
+
+
+
+
+

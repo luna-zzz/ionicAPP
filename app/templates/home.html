@@ -1,0 +1,52 @@
+        <ion-header-bar align-title="center" class="bar-light">
+                  <button class="button button-icon icon ion-navicon" ng-click="toggleLeft()"></button>
+                  <div class="h1 title">HanSmart</div>
+                  <button class="button button-clear button-positive">
+                    <span class="img-wrap">
+                        <img ng-src="img/user.jpg" alt="" class="img-round">
+                    </span>
+                  </button>
+                </ion-header-bar>
+        <ion-view title="HanSmart"> 
+            <ion-content has-bouncing="true" overflow-scroll="false">
+                <ion-refresher on-refresh="doRefresh()" pulling-text="下拉刷新" refreshing-text="正在刷新" refreshing-icon="ion-loading-b"></ion-refresher>
+                <div class="content" style="overflow: inherit">
+                        <div class="list-inset card m-0" >
+                            <div class="item item-body p-0" style="position: relative;height: 200px;">
+                                <img src="img/bg.jpg" class="full-image">
+                                <div class="shadow  p-10"></div>
+                                <div class="shadow-round center-wrap">
+                                    <div class="text-center">
+                                        <span style="font-size: 22px;font-weight: bold">5</span>
+                                        <span class="f-28">未完成</span>
+                                        <span class="f-28">五级警报</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <ion-list   can-swipe="true" >
+                            <a href="#" class="item item-divider item-icon-left" style="background-color:transparent;">
+                                <i class="icon  icon-list2"></i>报警列表
+                            </a>
+                            <ion-item collection-repeat="item in items track by $index" class="item  item-avatar item-remove-animate " item="item" href="#/home/{{item.id}}" type="item-text-wrap" >
+                                <img ng-src="img/invite.png">
+                                <span class="icon " ng-class="{'icon-badge-rb':true==item.mess}"></span>
+                                <h2>{{item.alarm_content}}</h2>
+                                <p>
+                                    <span class="pull-left">{{item.tool_id}}</span>
+                                    <span class="pull-right">{{item.alarm_time|date:"yyyy-MM-dd HH:mm:ss"}}</span>
+                                </p>
+                                <ion-option-button class="button-gray"
+                                                   ng-click="ignore($index)">
+                                  忽略
+                                </ion-option-button>
+                                <ion-option-button class="button-login"
+                                                   ng-click="assign(item)">
+                                  分配
+                                </ion-option-button>
+                            </ion-item>
+                           
+                        </ion-list>
+                    </div>
+            </ion-content>
+        </ion-view>

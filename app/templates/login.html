@@ -1,0 +1,53 @@
+<ion-header-bar align-title="center" class="bar-light">
+  <div class="buttons">
+    <button class="button button-icon ion-ios-arrow-left" ng-click="$ionicGoBack()">
+    </button>
+  </div>
+  <div class="h1 title" title="登录">登录</div>
+  <!-- <div class="buttons">
+    <a class="button login-register" ui-sref="register">
+      注册
+    </a>
+  </div> -->
+</ion-header-bar>
+<ion-content  has-bouncing="true" overflow-scroll="false" scroll="false">
+  <div class="login-mian" >
+    <div class="login-content">
+      <div class="blank-h12"></div>
+      <div class="logo-wrap  text-center  center-wrap p-10">
+          <img  src="img/logo.png" alt="" class="img-default">
+      </div>
+      <div class="blank-h12"></div>
+      <div class="input-wrap row row-center">
+        <input type="tel" class="col login-input" placeholder="请输入账号/手机号/邮箱" ng-model="user.name" maxlength="11">
+      </div>
+      <div class="input-wrap row row-center mt-10">
+        <input type="{{show_psd ? 'text' : 'password'}}"  class="col login-input" placeholder="请输入密码" ng-model="user.password" onkeyup="value=value.replace(/[^\w\.\/]/ig,'')">
+        <button class="psd-control" ng-click="showPassword()">
+          <i class="icon  {{show_psd ? 'icon-eye' : 'icon-eye_close'}} " ></i>
+        </button>
+      </div>
+      <div class="blank-h12"></div>
+      <button class="button button-block  button-positive button-login" ng-click="login()">
+        登录
+      </button>
+      <div class="blank-h12"></div>
+      <div class=" text-left pull-left">
+        <a href="" class="forget-passw" ui-sref="findpsw">忘记密码</a>
+      </div>
+      <div class=" text-right pull-right">
+        <a href="" class="forget-passw" ui-sref="register">还没注册？</a>
+      </div>
+      <div class="blank-h24 clear"></div>
+      <p class="text-center c-9">或</p>
+      <div class="text-center mt-20 c-9">
+        <i class="icon icon-wechat"></i>
+        <p class="mt-10 ">微信</p>
+      </div>
+
+
+    </div>
+
+
+  </div>
+</ion-content>

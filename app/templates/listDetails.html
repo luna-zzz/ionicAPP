@@ -1,0 +1,179 @@
+<ion-header-bar align-title="center" class="bar-light button-login">
+    <div class="buttons">
+        <button class="button button-icon icon ion-ios-arrow-back button-login" ng-click="$ionicGoBack()"></button>
+    </div>
+    <div class="h1 title  button-login" >{{listInfo.tool_id}}</div> 
+    <div class="buttons">
+            <button class="button button-icon icon ion-ios-information button-login" ng-click="goInfo(listInfo.tool_id)"></button>
+        <!-- <a ng-href="#/tab/info/{{listInfo.tool_id}}" class="button button-icon icon ion-ios-information button-login"></a> -->
+    </div>
+</ion-header-bar>
+<ion-view>
+    <ion-content style="bottom:20px;">
+        <div class="row p-0">
+            <div class="col tabs-striped p-0">
+                <div class="col-demo main-select" style="color:#fff;" ng-class="{activity : type == 'state'}" ng-click="changeType(0)">实时状态</div>
+            </div>
+            <div class="col p-0">
+                <div class="col-demo main-select" style="color:#fff;" ng-class="{activity : type == 'repair'}" ng-click="changeType(1)">维修记录</div>
+            </div>
+            <div class="col p-0">
+                <div class="col-demo main-select" style="color:#fff;" ng-class="{activity : type == 'remind'}" ng-click="changeType(2)">保养状态</div>
+            </div>
+            <div class="col p-0">
+                <div class="col-demo main-select" style="color:#fff;" ng-class="{activity : type == 'log'}" ng-click="changeType(3)">日志记录</div>
+            </div>
+        </div>
+
+        <!-- 导航切换-->
+        <ion-list>
+            <!-- 实时状态-->
+            <div ng-if="type == 'state'">
+                <div class="item item-remove-animate item-avatar p-0 border-none"  >
+                    <div class="echart-picture" ng-controller="lineCtrl">
+                        <div id="line" style="height:100%;width: 100%;"></div>
+                    </div>
+                </div>
+                <div class="item border-none blue ">工艺参数</div>
+                <div class="item border-none" style="padding-top: 0;padding-bottom: 0;">
+                    <div class="row params-list">
+                        <div class="col col-75 text-left dm-border dr-border">切割速度(mm/min)</div>
+                        <div class="col text-center dm-border">15</div>
+                    </div>
+                    <div class="row params-list">
+                        <div class="col col-75 text-left dm-border dr-border">激光功率(w)</div>
+                        <div class="col text-center dm-border">3400</div>
+                    </div>
+                    <div class="row params-list">
+                        <div class="col col-75 text-left dm-border dr-border">功率波度调节(1-100%)</div>
+                        <div class="col text-center dm-border"></div>
+                    </div>
+                    <div class="row params-list">
+                        <div class="col col-75 text-left dm-border dr-border">焦点偏置(-10-+10mm)</div>
+                        <div class="col text-center dm-border"></div>
+                    </div>
+                    <div class="row params-list">
+                        <div class="col col-75 text-left dm-border dr-border">喷嘴高度(0.5-8mm)</div>
+                        <div class="col text-center dm-border"></div>
+                    </div>
+                    <div class="row params-list">
+                        <div class="col col-75 text-left dr-border">气体类型(1=AIR,2=O2,3=N2,4=LPN2)</div>
+                        <div class="col text-center"></div>
+                    </div>
+                </div>
+                <div class="item border-none blue">工艺参数</div>
+                <div class="item border-none" style="padding-top: 0;padding-bottom: 0;">
+                    <div class="row params-list">
+                        <div class="col col-75 text-left dm-border dr-border">切割速度(mm/min)</div>
+                        <div class="col text-center dm-border">15</div>
+                    </div>
+                    <div class="row params-list">
+                        <div class="col col-75 text-left dm-border dr-border">激光功率(w)</div>
+                        <div class="col text-center dm-border">3400</div>
+                    </div>
+                    <div class="row params-list">
+                        <div class="col col-75 text-left dm-border dr-border">功率波度调节(1-100%)</div>
+                        <div class="col text-center dm-border"></div>
+                    </div>
+                    <div class="row params-list">
+                        <div class="col col-75 text-left dm-border dr-border">焦点偏置(-10-+10mm)</div>
+                        <div class="col text-center dm-border"></div>
+                    </div>
+                    <div class="row params-list">
+                        <div class="col col-75 text-left dm-border dr-border">喷嘴高度(0.5-8mm)</div>
+                        <div class="col text-center dm-border"></div>
+                    </div>
+                    <div class="row params-list">
+                        <div class="col col-75 text-left dr-border">气体类型(1=AIR,2=O2,3=N2,4=LPN2)</div>
+                        <div class="col text-center"></div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- 维修记录-->
+            <div ng-if="type == 'repair'">
+                <div class="bar bar-header item-input-inset">
+                  <label class="item-input-wrapper" style="background-color: transparent;border:1px solid #ddd;">
+                    <input type="search" placeholder="请输入想要搜索的内容" ng-model="mysearch">
+                  </label>
+                </div>
+                <ion-list   can-swipe="true" >
+                            <ion-item collection-repeat="item in items track by $index" class="item  item-avatar item-remove-animate" item="item" href="#/home/{{item.id}}" type="item-text-wrap" >
+                                <img ng-src="img/invite.png">
+                                <span class="icon " ng-class="{'icon-badge-rb':true==item.mess}"></span>
+                                <h2>{{item.alarm_content}}</h2>
+                                <p>
+                                    <span class="pull-left">{{item.tool_id}}</span>
+                                    <span class="pull-right">{{item.alarm_time|date:"yyyy-MM-dd HH:mm:ss"}}</span>
+                                </p>
+                                <ion-option-button class="button-gray"
+                                                   ng-click="ignore($index)">
+                                  忽略
+                                </ion-option-button>
+                                <ion-option-button class="button-login"
+                                                   ng-click="assign(item)">
+                                  分配
+                                </ion-option-button>
+                            </ion-item>
+                           
+                        </ion-list>
+                <!-- <ion-item class="item-remove-animate item-avatar item-icon-right" type="item-text-wrap" href="#/tab/groupDetail">
+                    <img ng-src="img/mike.png">
+                    <h2>足球协会</h2>
+                    <p>准备吃饭了...</p>
+                    <ion-option-button class="button-assertive" ng-click="remove(chat)">
+                        删除
+                    </ion-option-button>
+                </ion-item>
+                <ion-item class="item-remove-animate item-avatar item-icon-right" type="item-text-wrap" href="#/tab/groupDetail">
+                    <img ng-src="img/mike.png">
+                    <h2>篮球协会</h2>
+                    <p>发布了一个新活动</p>
+                    <ion-option-button class="button-assertive" ng-click="remove(chat)">
+                        删除
+                    </ion-option-button>
+                </ion-item> -->
+            </div>
+
+            <!-- 保养状态-->
+            <div ng-if="type == 'remind'">
+                <!-- <ion-item class="item-remove-animate item-avatar item-icon-right" type="item-text-wrap" href="#/tab/friendDetail">
+                    <img ng-src="img/mike.png">
+                    <h2>mike</h2>
+                    <p>关注：200</p>
+                    <ion-option-button class="button-assertive" ng-click="remove(chat)">
+                        删除
+                    </ion-option-button>
+                </ion-item>
+                <ion-item class="item-remove-animate item-avatar item-icon-right" type="item-text-wrap" href="#/tab/groupDetail">
+                    <img ng-src="img/mike.png">
+                    <h2>天翼足球协会</h2>
+                    <p>关注：2000</p>
+                    <ion-option-button class="button-assertive" ng-click="remove(chat)">
+                        删除
+                    </ion-option-button>
+                </ion-item> -->
+            </div>
+            <!-- 日志记录 -->
+             <div ng-if="type == 'log'">
+                <!-- <ion-item class="item-remove-animate item-avatar item-icon-right" type="item-text-wrap" href="#/tab/friendDetail">
+                    <img ng-src="img/mike.png">
+                    <h2>mike</h2>
+                    <p>关注：200</p>
+                    <ion-option-button class="button-assertive" ng-click="remove(chat)">
+                        删除
+                    </ion-option-button>
+                </ion-item>
+                <ion-item class="item-remove-animate item-avatar item-icon-right" type="item-text-wrap" href="#/tab/groupDetail">
+                    <img ng-src="img/mike.png">
+                    <h2>天翼足球协会</h2>
+                    <p>关注：2000</p>
+                    <ion-option-button class="button-assertive" ng-click="remove(chat)">
+                        删除
+                    </ion-option-button>
+                </ion-item> -->
+            </div>
+        </ion-list>
+    </ion-content>
+</ion-view>
